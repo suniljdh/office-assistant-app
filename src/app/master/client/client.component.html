@@ -1,0 +1,232 @@
+<form #frm="ngForm" [formGroup]="frmClient" (ngSubmit)="SubmitClient(frm)">
+  <div class="drop-shadow">
+    <div class="title-row">
+      <div class="title--with--icon">
+        <h1>
+          <mat-icon svgIcon="formIcon"  color="primary">Form</mat-icon>
+              Client Master</h1>
+      </div>
+    <!-- <span class="fill-space"></span> -->
+
+      <div class="navigation--buttons">
+        <button type="submit" [disabled]="frmClient.invalid || frmClient.untouched" mat-icon-button matTooltip="Save" color="primary">
+          <mat-icon svgIcon="save">Save</mat-icon>
+        </button>
+        <button type="reset" mat-icon-button matTooltip="Reset" color="warn">
+          <mat-icon svgIcon="refresh">Refresh</mat-icon>
+        </button>
+        <button type="button" (click)="FetchClientData('p')" mat-icon-button matTooltip="Previous" color="warn">
+          <mat-icon svgIcon="previous">Previous</mat-icon>
+        </button>
+        <button type="button" (click)="FetchClientData('n')" mat-icon-button matTooltip="Next" color="warn">
+          <mat-icon svgIcon="next">Next</mat-icon>
+        </button>
+        <button type="button" (click)="SetSearchMode(true)" mat-icon-button matTooltip="Search" color="warn">
+          <mat-icon svgIcon="search">Search</mat-icon>
+        </button>
+        <button type="button" mat-icon-button matTooltip="Email" color="warn">
+          <mat-icon svgIcon="email">Email</mat-icon>
+        </button>
+        <button type="button" mat-icon-button matTooltip="Print" color="warn">
+          <mat-icon svgIcon="print">Print</mat-icon>
+        </button>
+        <button type="button" (click)="DeleteClientData(frm)" mat-icon-button matTooltip="Delete" color="warn">
+          <mat-icon svgIcon="delete">Delete</mat-icon>
+        </button>
+        <button type="button" mat-icon-button matTooltip="Settings" color="warn">
+          <mat-icon svgIcon="settings">Settings</mat-icon>
+        </button>
+        <button type="button" mat-icon-button matTooltip="Help" color="warn">
+          <mat-icon svgIcon="help">Help</mat-icon>
+        </button>
+        <button type="button" mat-icon-button matTooltip="Exit" color="accent">
+          <mat-icon svgIcon="exit">Exit</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="wrapper" *ngIf="!SearchMode">
+      <div class="clienttype--item">
+        <mat-form-field>
+          <mat-select placeholder="Client Type" formControlName="clienttypeid" required>
+            <mat-option>-None-</mat-option>
+            <mat-option *ngFor="let ClientType of ClientTypes" [value]="ClientType.id">
+              {{ClientType.type}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="firstname--item">
+        <mat-form-field>
+          <input #firstname matInput placeholder="First Name" formControlName="firstname" required>
+          <mat-error *ngIf="FirstName.invalid">{{getErrorMessage('FirstName')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="middlename--item">
+        <mat-form-field>
+          <input matInput placeholder="Middle Name" formControlName="middlename" required>
+          <mat-error *ngIf="MiddleName.invalid">{{getErrorMessage('MiddleName')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="lastname--item">
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastname" required>
+          <mat-error *ngIf="LastName.invalid">{{getErrorMessage('LastName')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="companyname--item">
+        <mat-form-field>
+          <input matInput placeholder="Company Name" formControlName="companyname" required>
+          <mat-error *ngIf="CompanyName.invalid">{{getErrorMessage('CompanyName')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="dob--item">
+        <mat-form-field>
+          <input matInput [matDatepicker]="dp" placeholder="Date of Birth" formControlName="dob" required>
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="panno--item">
+        <mat-form-field>
+          <input matInput placeholder="Pan No." formControlName="panno" required>
+          <mat-error *ngIf="PANNO.invalid">{{getErrorMessage('PANNO')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="aadharno--item">
+        <mat-form-field>
+          <input matInput placeholder="Aadhar No." formControlName="aadharno" required>
+          <mat-error *ngIf="AADHARNO.invalid">{{getErrorMessage('AADHARNO')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="gstno--item">
+        <mat-form-field>
+          <input matInput placeholder="GSTN" formControlName="gstno" required>
+          <mat-error *ngIf="GSTNO.invalid">{{getErrorMessage('GSTNO')}}</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <!-- ----------------------- -->
+    <div formGroupName="documents">
+      <div formArrayName="document" *ngFor="let item of frmClient.get('documents').get('document').controls; let i = index;">
+        <div [formGroupName]="i" class="document--section">
+          <div class="documentname--item" *ngIf="i===0">
+            <h4>Document Name</h4>
+          </div>
+          <div class="mandatory--item"  *ngIf="i===0">
+            <h4>Is Mandatory</h4>
+          </div>
+          <div class="dos--item"  *ngIf="i===0">
+            <!-- <span class="header-item">Submitted On</span> -->
+            <h4>Submitted On</h4>
+          </div>
+          <div class="sno--item">
+              {{i+1}}
+            </div>
+          <div class="documentname--item">
+            <mat-form-field>
+                <mat-select placeholder="Document Name" formControlName="documentname" required>
+                  <mat-option>-None-</mat-option>
+                  <mat-option *ngFor="let d of documentList" [value]="d.document">
+                    {{d.document}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+          </div>
+          <div class="mandatory--item">
+            <mat-checkbox formControlName="mandatory" color="primary"></mat-checkbox>
+          </div>
+          <div class="dos--item">
+            <mat-form-field>
+              <input matInput [matDatepicker]="dp" placeholder="Date of Submission" formControlName="submissiondate" required>
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="addremove--item">
+              <!-- <span>{{i}}</span> -->
+              <button type="button" (click)="addItem()" mat-icon-button matTooltip="Add" color="warn">
+                <mat-icon svgIcon="addItem"></mat-icon>
+              </button>
+              <button *ngIf="i > 0" type="button" (click)="removeItem(i)" mat-icon-button matTooltip="Delete Row No. {{i+1}}" color="warn">
+                <mat-icon svgIcon="removeItem"></mat-icon>
+              </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ----------------------- -->
+  </div>
+</form>
+
+<div *ngIf="SearchMode">
+
+  <div class="filter-row">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+
+    <mat-form-field>
+      <mat-select [(value)]="selectedColumn" placeholder="Filter Column" required>
+        <mat-option *ngFor="let filter of filterItems" [value]="filter.filter">
+          {{filter.displayFilter}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8 drop-shadow">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="clientid">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.clientid}} </td>
+      </ng-container>
+      <ng-container matColumnDef="clienttypeid">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Client Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.clienttypeid}} </td>
+      </ng-container>
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.firstname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="middlename">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.middlename}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="companyname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.companyname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Birth </th>
+        <td mat-cell *matCellDef="let row"> {{row.dob | date: 'dd/MMM/yyyy'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="panno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> PAN </th>
+        <td mat-cell *matCellDef="let row"> {{row.panno}} </td>
+      </ng-container>
+      <ng-container matColumnDef="aadharno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> AADHAR </th>
+        <td mat-cell *matCellDef="let row"> {{row.aadharno}} </td>
+      </ng-container>
+      <ng-container matColumnDef="gstno">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> GSTN </th>
+        <td mat-cell *matCellDef="let row"> {{row.gstno}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="table-header" [bgColor]="grey"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="GetClient(row)">
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]">
+
+    </mat-paginator>
+  </div>
+
+</div>

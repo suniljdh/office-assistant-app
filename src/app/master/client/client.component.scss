@@ -1,0 +1,81 @@
+.wrapper{
+display: grid;
+// margin: 50px;
+padding: 0px 20px 20px 20px;
+  grid-template-columns: [grid-start] repeat( auto-fill ,[column-start] minmax(200px,1fr) [column-end])  [grid-end];
+   grid-column-gap: 5px;
+   justify-items: start;
+}
+
+.clienttype--item{
+grid-column: column-start 1 / column-end 2;
+}
+
+.firstname--item{
+  grid-column: column-start 1/column-end 1;
+  //grid-row: first-row-start/first-row-end;
+}
+.middlename--item{
+  grid-column: column-start 2/column-end 2;
+  //grid-row: first-row-start/first-row-end;
+}
+
+.lastname--item{
+  grid-column: column-start 3/column-end 3;
+  //grid-row: first-row-start/first-row-end;
+}
+
+.companyname--item{
+  grid-column: column-start 1/4;
+  //grid-row: second-row-start/second-row-end;
+}
+
+.dob--item{
+  grid-column: column-start 1/column-end 1;
+ // grid-row: third-row-start/third-row-end;
+}
+.panno--item{
+  grid-column: column-start 2/column-end 2;
+ // grid-row: third-row-start/third-row-end;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.document--section{
+  width: 95vw;
+  display: grid;
+  grid-template-columns: 20px repeat(auto-fill, [col-start] minmax(175px, 1fr) [col-end]);
+  grid-gap: 5px;
+   justify-items: start;
+  align-items: center;
+}
+.sno--item{
+  grid-column: 1 / 2;
+}
+.documentname--item{
+  grid-column: col-start 1 / col-end 1;
+  }
+.mandatory--item{
+  grid-column: col-start 2 / col-end 2;
+  justify-self: center;
+}
+.dos--item{
+  grid-column: col-start 3 / col-end 3;
+}
+.addremove--item{
+  grid-column: col-start 4 / col-end 4;
+  justify-self: center;
+}
+
+

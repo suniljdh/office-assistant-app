@@ -1,0 +1,24 @@
+.mat-form-field {
+  width: 400px !important;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  align-items: center;
+  justify-items: stretch;
+}
+
+.username--item {
+  grid-column: 1/-1;
+}
+.verifypassword--item {
+  grid-column: 2/-1;
+}
+.isactive--item {
+  grid-column: 2/-1;
+}
+.button--save {
+  grid-column: 1/-1;
+  justify-self: center;
+}

@@ -1,0 +1,67 @@
+<h1 class="mat-h1">Add New User</h1>
+<div class="drop-shadow">
+  <form #f [formGroup]="frmUser" (ngSubmit)="SaveUser(f)">
+    <div class="wrapper">
+      <!--- User Name --->
+      <div class="username--item">
+        <mat-form-field>
+          <input formControlName="username" matInput type="text" placeholder="User Name">
+          <button mat-button *ngIf="frmUser.get('username').value" matSuffix mat-icon-button aria-label="Clear" (click)="frmUser.get('username').value=''">
+            <mat-icon svgIcon="exit"></mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <!--- Login Id --->
+      <div class="loginid--item">
+        <mat-form-field>
+          <input formControlName="loginid" matInput type="text" placeholder="Login Id">
+          <button mat-button *ngIf="frmUser.get('loginid').value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon svgIcon="exit"></mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <!--- Password --->
+      <div class="password--item">
+        <mat-form-field>
+          <input formControlName="password" matInput type="text" placeholder="Password">
+          <button mat-button *ngIf="frmUser.get('password').value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon svgIcon="exit"></mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!--- VerifyPassword --->
+      <div class="verifypassword--item">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Verify Password">
+          <button mat-button *ngIf="frmUser.get('password').value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon svgIcon="exit"></mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <!--- Role Id --->
+      <div class="roleassigned--item">
+        <mat-form-field>
+          <mat-select formControlName="roleid" placeholder="Role Assigned" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let role of roles" [value]="role.id">
+              {{role.role_name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="frmUser.get('roleid').hasError('required')">Please select a Role</mat-error>
+          <mat-hint>Please select a Role</mat-hint>
+        </mat-form-field>
+      </div>
+      <!--- Active/DeActive --->
+      <div class="isactive--item">
+        <mat-checkbox formControlName="isactive">Active User</mat-checkbox>
+      </div>
+      <!--- Buttons --->
+      <div class="button--save">
+        <button [disabled]="frmUser.invalid || frmUser.untouched" type="submit" mat-raised-button color="primary">Save</button>
+        <button type="reset" mat-raised-button color="warn">Reset</button>
+      </div>
+    </div>
+  </form>
+</div>

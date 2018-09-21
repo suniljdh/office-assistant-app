@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$app-default-primary: mat-palette($mat-yellow,900,900);
+$app-default-secondary: mat-palette($mat-blue,900);
+$app-default-warn: mat-palette($mat-red,900);
+
+$app-default-theme:mat-light-theme($app-default-primary, $app-default-secondary,$app-default-warn);
+
+@include angular-material-theme($app-default-theme);
+
+
+$app-dark-primary: mat-palette($mat-blue-grey);
+$app-dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$app-dark-warn:    mat-palette($mat-deep-orange);
+$app-dark-theme:   mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
+
+.app-dark-theme {
+    @include angular-material-theme($app-dark-theme);
+  }

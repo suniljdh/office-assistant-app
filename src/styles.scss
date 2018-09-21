@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'src/custom-theme.scss';
+
+:host-context(select) > mat-option {
+  font-size: 0.12rem;
+}
+
+.drop-shadow {
+  display: grid;
+
+  //justify-self: center;
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  // padding: 0px 20px 20px 20px;
+  //width: 100vw;
+  box-shadow: 0 3px 6px 0px rgba(0, 0, 0, 0.16),
+    0 3px 6px 0px rgba(0, 0, 0, 0.23);
+}
+
+.title-row {
+  display: grid;
+  grid-template-columns: 1fr minmax(max-content, 1fr) !important;
+  justify-items: left;
+  align-items: center;
+  margin: 20px;
+  padding: 0px 20px 0px 0px;
+  box-shadow: 0 2px 2px 0px rgb(201, 198, 198);
+}
+
+.title--with--icon {
+  justify-self: self-start !important;
+  align-self: center;
+}
+.navigation--buttons {
+  justify-self: self-end !important;
+  align-self: center;
+}
+.filter-row {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  padding: 5px;
+  margin: 0px 20px 0px 20px;
+  box-shadow: 0 3px 0px 0px rgba(0, 0, 0, 0.16),
+    0 3px 6px 0px rgba(0, 0, 0, 0.23);
+}
+tr:not(.table-header):hover {
+  background: rgb(228, 227, 227);
+}
+
+tr:active {
+  background: #ffffff;
+}
+
+.fill-space {
+  flex: 1 1 auto;
+}
+
+.mat-form-field {
+  width: 100% !important;
+}
+.mat-raised-button {
+  margin: 2px !important;
+}
