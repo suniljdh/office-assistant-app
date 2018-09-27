@@ -4,14 +4,16 @@ import { ClientComponent } from './master/client/client.component';
 import { DashboardComponent } from './dashboard/oa-dashboard/oa-dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { VehicleTrackingComponent } from './reports/vehicle-tracking/vehicle-tracking.component';
-import { LogInComponent } from './auth/log-in/log-in.component';
 import { AuthGuard } from './services/admin/auth-guard.service';
 import { RoleManagementComponent } from './auth/role-management/role-management.component';
 import { RmComponent } from './master/rm/rm.component';
 import { UserManagementComponent } from './auth/user-management/user-management.component';
+import { LoginResolve } from './services/admin/login-resolve.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { UserAuthComponent } from './auth/user-auth/user-auth.component';
 
 const routes: Routes = [
-  { path: '', component: LogInComponent },
+  { path: '', component: UserAuthComponent },
   { path: 'home', component: HomeComponent },
   {
     path: 'master/client',
@@ -39,7 +41,7 @@ const routes: Routes = [
     component: UserManagementComponent,
     canActivate: [AuthGuard]
   },
-  { path: '**', component: LogInComponent }
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

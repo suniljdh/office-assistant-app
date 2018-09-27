@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
+import {
+  Breakpoints,
+  BreakpointState,
+  BreakpointObserver
+} from '@angular/cdk/layout';
+import { IRoute } from '../../model/i-route';
 
 @Component({
   selector: 'oa-dashboard',
   templateUrl: './oa-dashboard.component.html',
   styleUrls: ['./oa-dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit, OnDestroy {
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -29,5 +34,17 @@ export class DashboardComponent {
     })
   );
 
+  routeLink: IRoute[] = [];
+
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  ngOnInit(): void {
+    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    // Add 'implements OnInit' to the class.
+  }
+
+  ngOnDestroy(): void {
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
+  }
 }

@@ -19,7 +19,7 @@
         </button>
         <button mat-menu-item *ngIf="authService.IsAuthenticated()" routerLink="/manage-role">
           <mat-icon svgIcon="settings"></mat-icon>
-          <span>User Settings</span>
+          <span>Role Management</span>
         </button>
         <button mat-menu-item disabled>
           <mat-icon svgIcon="notification-active"></mat-icon>
@@ -42,6 +42,16 @@
         <a mat-list-item routerLink="/master/client" *ngIf="authService.IsAuthenticated()">Client Master</a>
         <a mat-list-item routerLink="/report/vehicle-tracking" *ngIf="authService.IsAuthenticated()">Reports</a>
       </mat-nav-list>
+
+      <!-- <mat-nav-list>
+        <mat-list-item *ngFor="let link of links">
+          <a matLine href="...">{{ link }}</a>
+          <button mat-icon-button (click)="showInfo(link)">
+            <mat-icon>info</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list> -->
+
     </mat-sidenav>
     <mat-sidenav-content>
       <router-outlet></router-outlet>

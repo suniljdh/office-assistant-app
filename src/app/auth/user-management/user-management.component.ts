@@ -27,7 +27,7 @@ export class UserManagementComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.frmUser = fb.group({
-      username: fb.control(
+      displayname: fb.control(
         null,
         Validators.compose([Validators.required, Validators.minLength(3)])
       ),

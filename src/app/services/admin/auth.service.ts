@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { tokenGetter, removeToken } from '../../utilities/common/token-actions';
 
-
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private jwtHelper: JwtHelperService) { }
+  constructor(private jwtHelper: JwtHelperService) {}
 
   public IsAuthenticated(): boolean {
     const token = tokenGetter();
-    return  !this.jwtHelper.isTokenExpired(token);
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
   public IsAdminUser(): boolean {
@@ -25,7 +24,6 @@ export class AuthService {
   }
 
   public LogOut() {
-  removeToken();
+    removeToken();
   }
-
 }

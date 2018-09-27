@@ -5,8 +5,9 @@
       <!--- User Name --->
       <div class="username--item">
         <mat-form-field>
-          <input formControlName="username" matInput type="text" placeholder="User Name">
-          <button mat-button *ngIf="frmUser.get('username').value" matSuffix mat-icon-button aria-label="Clear" (click)="frmUser.get('username').value=''">
+          <input formControlName="displayname" matInput type="text" placeholder="User Name">
+          <button mat-button *ngIf="frmUser.get('displayname').value" matSuffix mat-icon-button aria-label="Clear"
+            (click)="frmUser.get('displayname').value=''">
             <mat-icon svgIcon="exit"></mat-icon>
           </button>
         </mat-form-field>

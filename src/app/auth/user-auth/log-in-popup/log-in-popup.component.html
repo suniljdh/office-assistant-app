@@ -1,0 +1,26 @@
+<div>
+  <h2 mat-dialog-title>Login</h2>
+  <form #frm="ngForm">
+    <mat-dialog-content>
+      <div *ngIf="errMsg">
+        <h3 [ngStyle]="{'color':'red'}">{{errMsg}}</h3>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Username" [(ngModel)]="loginid" name="loginid" (keydown.enter)="onKey(frm)"
+            required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" (keydown.enter)="onKey(frm)"
+            required>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button [disabled]="frm.invalid" type="button" (click)="onLoginConfirm()" color="primary">Login</button>
+      <button mat-raised-button type="button" (click)="clearform(frm)" color="warn">Clear</button>
+    </mat-dialog-actions>
+  </form>
+</div>
