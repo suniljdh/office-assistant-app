@@ -4,6 +4,8 @@ import { IPermission } from '../../model/i-permission';
 import { DataService } from '../../utilities/data.service';
 import { IMenu } from '../../model/i-menu';
 import { IMessage } from '../../model/i-message';
+import { IUserPermission } from '../../model/i-user-permission';
+import { IActionConfig } from '../../model/i-action-config';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +31,13 @@ export class PermissionService {
   SaveUser(data): Observable<IMessage> {
     const serviceMethod = '/savenewuser';
     return <Observable<IMessage>>this.data.postData(serviceMethod, data);
+  }
+  FetchUserPermissions(loginid: string): Observable<IUserPermission[]> {
+    const serviceMethod = '/userpermissions?loginid=' + loginid;
+    return <Observable<IUserPermission[]>>this.data.getData(serviceMethod);
+  }
+  FetchEntityPermissions(data: any): Observable<IActionConfig> {
+    const serviceMethod = '/entitypermissions';
+    return <Observable<IActionConfig>>this.data.postData(serviceMethod, data);
   }
 }

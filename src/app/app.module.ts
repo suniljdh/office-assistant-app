@@ -28,11 +28,16 @@ import { tokenGetter } from './utilities/common/token-actions';
 import { LogInPopupComponent } from './auth/user-auth/log-in-popup/log-in-popup.component';
 import { RoleManagementComponent } from './auth/role-management/role-management.component';
 import { TabletemplateComponent } from './tabletemplate/tabletemplate.component';
-import { RmComponent } from './master/rm/rm.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EmployeeComponent } from './master/employee/employee.component';
 import { DocumentComponent } from './master/document/document.component';
 import { UserAuthComponent } from './auth/user-auth/user-auth.component';
+import { DocumentReceivedComponent } from './report/document-received/document-received.component';
+import { PendingTaskComponent } from './report/pending-task/pending-task.component';
+import { DocumentSentComponent } from './report/document-sent/document-sent.component';
+import { PaymentReceivedComponent } from './report/payment-received/payment-received.component';
+import { PaymentPaidComponent } from './report/payment-paid/payment-paid.component';
+import { PaymentPendingComponent } from './report/payment-pending/payment-pending.component';
 
 @NgModule({
   declarations: [
@@ -45,11 +50,16 @@ import { UserAuthComponent } from './auth/user-auth/user-auth.component';
     LogInPopupComponent,
     RoleManagementComponent,
     TabletemplateComponent,
-    RmComponent,
     NotFoundComponent,
     EmployeeComponent,
     DocumentComponent,
-    UserAuthComponent
+    UserAuthComponent,
+    DocumentReceivedComponent,
+    PendingTaskComponent,
+    DocumentSentComponent,
+    PaymentReceivedComponent,
+    PaymentPaidComponent,
+    PaymentPendingComponent
   ],
   entryComponents: [LogInPopupComponent],
   imports: [

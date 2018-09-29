@@ -19,6 +19,8 @@ export class UserAuthComponent implements OnInit {
       if (result === undefined || result === null) {
         return;
       }
+      let loginid: string;
+      loginid = result.loginid;
     });
   }
 

@@ -3,13 +3,15 @@
     <div class="title-row">
       <div class="title--with--icon">
         <h1>
-          <mat-icon svgIcon="formIcon"  color="primary">Form</mat-icon>
-              Client Master</h1>
+          <mat-icon svgIcon="formIcon" color="primary">Form</mat-icon>
+          Client Master
+        </h1>
       </div>
-    <!-- <span class="fill-space"></span> -->
+      <!-- <span class="fill-space"></span> -->
 
       <div class="navigation--buttons">
-        <button type="submit" [disabled]="frmClient.invalid || frmClient.untouched" mat-icon-button matTooltip="Save" color="primary">
+        <button type="submit" [disabled]="frmClient.invalid || frmClient.untouched" mat-icon-button matTooltip="Save"
+          color="primary">
           <mat-icon svgIcon="save">Save</mat-icon>
         </button>
         <button type="reset" mat-icon-button matTooltip="Reset" color="warn">
@@ -21,19 +23,21 @@
         <button type="button" (click)="FetchClientData('n')" mat-icon-button matTooltip="Next" color="warn">
           <mat-icon svgIcon="next">Next</mat-icon>
         </button>
-        <button type="button" (click)="SetSearchMode(true)" mat-icon-button matTooltip="Search" color="warn">
+        <button [disabled]="actionSetting?.search ===false" type="button" (click)="SetSearchMode(true)" mat-icon-button
+          matTooltip="Search" color="warn">
           <mat-icon svgIcon="search">Search</mat-icon>
         </button>
-        <button type="button" mat-icon-button matTooltip="Email" color="warn">
+        <button [disabled]="actionSetting?.mail ===false" type="button" mat-icon-button matTooltip="Email" color="warn">
           <mat-icon svgIcon="email">Email</mat-icon>
         </button>
-        <button type="button" mat-icon-button matTooltip="Print" color="warn">
+        <button [disabled]="actionSetting?.print ===false" type="button" mat-icon-button matTooltip="Print" color="warn">
           <mat-icon svgIcon="print">Print</mat-icon>
         </button>
-        <button type="button" (click)="DeleteClientData(frm)" mat-icon-button matTooltip="Delete" color="warn">
+        <button [disabled]="actionSetting?.delete ===false" type="button" (click)="DeleteClientData(frm)"
+          mat-icon-button matTooltip="Delete" color="warn">
           <mat-icon svgIcon="delete">Delete</mat-icon>
         </button>
-        <button type="button" mat-icon-button matTooltip="Settings" color="warn">
+        <button [disabled]="actionSetting?.settings ===false" type="button" mat-icon-button matTooltip="Settings" color="warn">
           <mat-icon svgIcon="settings">Settings</mat-icon>
         </button>
         <button type="button" mat-icon-button matTooltip="Help" color="warn">
@@ -115,44 +119,46 @@
           <div class="documentname--item" *ngIf="i===0">
             <h4>Document Name</h4>
           </div>
-          <div class="mandatory--item"  *ngIf="i===0">
+          <div class="mandatory--item" *ngIf="i===0">
             <h4>Is Mandatory</h4>
           </div>
-          <div class="dos--item"  *ngIf="i===0">
+          <div class="dos--item" *ngIf="i===0">
             <!-- <span class="header-item">Submitted On</span> -->
             <h4>Submitted On</h4>
           </div>
           <div class="sno--item">
-              {{i+1}}
-            </div>
+            {{i+1}}
+          </div>
           <div class="documentname--item">
             <mat-form-field>
-                <mat-select placeholder="Document Name" formControlName="documentname" required>
-                  <mat-option>-None-</mat-option>
-                  <mat-option *ngFor="let d of documentList" [value]="d.document">
-                    {{d.document}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
+              <mat-select placeholder="Document Name" formControlName="documentname" required>
+                <mat-option>-None-</mat-option>
+                <mat-option *ngFor="let d of documentList" [value]="d.document">
+                  {{d.document}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
           <div class="mandatory--item">
             <mat-checkbox formControlName="mandatory" color="primary"></mat-checkbox>
           </div>
           <div class="dos--item">
             <mat-form-field>
-              <input matInput [matDatepicker]="dp" placeholder="Date of Submission" formControlName="submissiondate" required>
+              <input matInput [matDatepicker]="dp" placeholder="Date of Submission" formControlName="submissiondate"
+                required>
               <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
               <mat-datepicker #dp></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="addremove--item">
-              <!-- <span>{{i}}</span> -->
-              <button type="button" (click)="addItem()" mat-icon-button matTooltip="Add" color="warn">
-                <mat-icon svgIcon="addItem"></mat-icon>
-              </button>
-              <button *ngIf="i > 0" type="button" (click)="removeItem(i)" mat-icon-button matTooltip="Delete Row No. {{i+1}}" color="warn">
-                <mat-icon svgIcon="removeItem"></mat-icon>
-              </button>
+            <!-- <span>{{i}}</span> -->
+            <button type="button" (click)="addItem()" mat-icon-button matTooltip="Add" color="warn">
+              <mat-icon svgIcon="addItem"></mat-icon>
+            </button>
+            <button *ngIf="i > 0" type="button" (click)="removeItem(i)" mat-icon-button matTooltip="Delete Row No. {{i+1}}"
+              color="warn">
+              <mat-icon svgIcon="removeItem"></mat-icon>
+            </button>
           </div>
 
         </div>

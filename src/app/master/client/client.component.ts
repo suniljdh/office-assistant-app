@@ -31,6 +31,8 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { CUSTOM_FORMATS } from '../../utilities/common/custom-date-format';
 import * as _moment from 'moment';
 import { IDocumentType } from '../../model/i-document-type';
+import { IActionConfig } from '../../model/i-action-config';
+import { PermissionService } from '../../services/admin/permission.service';
 // tslint:disable-next-line:no-duplicate-imports
 // import {default as _rollupMoment} from 'moment';
 
@@ -53,7 +55,7 @@ import { IDocumentType } from '../../model/i-document-type';
 })
 export class ClientComponent implements OnInit, OnDestroy {
   moment = _moment;
-
+  actionSetting: IActionConfig;
   // clienttype_id: Number = -1;
   msg: IMessage;
   frmClient: FormGroup;
@@ -94,7 +96,9 @@ export class ClientComponent implements OnInit, OnDestroy {
   paginator: MatPaginator;
   @ViewChild(MatSort)
   sort: MatSort;
+  entityInfo: { loginid: string; entityref: number };
   constructor(
+    private permissionService: PermissionService,
     private msgService: MessageService,
     private snackBar: MatSnackBar,
     private clientService: ClientService,
@@ -120,6 +124,15 @@ export class ClientComponent implements OnInit, OnDestroy {
     this.filterItems.forEach((el: IFilter) => {
       this.displayedColumns.push(el.filter);
     });
+
+    this.entityInfo = { loginid: 'hardik', entityref: 2 };
+
+    this.permissionService
+      .FetchEntityPermissions(this.entityInfo)
+      .subscribe((resp: IActionConfig) => {
+        this.actionSetting = resp;
+        console.log(this.actionSetting);
+      });
   }
 
   get ClientId(): FormControl {

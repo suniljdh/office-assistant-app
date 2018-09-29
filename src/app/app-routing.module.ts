@@ -6,11 +6,19 @@ import { HomeComponent } from './home/home.component';
 import { VehicleTrackingComponent } from './reports/vehicle-tracking/vehicle-tracking.component';
 import { AuthGuard } from './services/admin/auth-guard.service';
 import { RoleManagementComponent } from './auth/role-management/role-management.component';
-import { RmComponent } from './master/rm/rm.component';
+
 import { UserManagementComponent } from './auth/user-management/user-management.component';
 import { LoginResolve } from './services/admin/login-resolve.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserAuthComponent } from './auth/user-auth/user-auth.component';
+import { EmployeeComponent } from './master/employee/employee.component';
+import { DocumentComponent } from './master/document/document.component';
+import { DocumentReceivedComponent } from './report/document-received/document-received.component';
+import { PendingTaskComponent } from './report/pending-task/pending-task.component';
+import { DocumentSentComponent } from './report/document-sent/document-sent.component';
+import { PaymentReceivedComponent } from './report/payment-received/payment-received.component';
+import { PaymentPaidComponent } from './report/payment-paid/payment-paid.component';
+import { PaymentPendingComponent } from './report/payment-pending/payment-pending.component';
 
 const routes: Routes = [
   { path: '', component: UserAuthComponent },
@@ -20,7 +28,46 @@ const routes: Routes = [
     component: ClientComponent,
     canActivate: [AuthGuard]
   },
-  { path: 'master/rm', component: RmComponent, canActivate: [AuthGuard] },
+  {
+    path: 'master/employee',
+    component: EmployeeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'master/document',
+    component: DocumentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'report/document-received',
+    component: DocumentReceivedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'report/pending-task',
+    component: PendingTaskComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'report/document-sent',
+    component: DocumentSentComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'report/payment-received',
+    component: PaymentReceivedComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'report/payment-paid',
+    component: PaymentPaidComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'report/payment-pending',
+    component: PaymentPendingComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,

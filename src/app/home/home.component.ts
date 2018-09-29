@@ -1,24 +1,27 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/admin/auth.service';
 import { Router } from '@angular/router';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { PermissionService } from '../services/admin/permission.service';
+import { IUserPermission } from '../model/i-user-permission';
 
 @Component({
   selector: 'oa-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css']
 })
-export class HomeComponent implements OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   title = 'Office Assistant';
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
-
+  // fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
+  permittedRoutes: IUserPermission[] = [];
   private _mobileQueryListener: () => void;
 
   constructor(
+    private permissionService: PermissionService,
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private router: Router,
@@ -173,6 +176,14 @@ export class HomeComponent implements OnDestroy {
         'src/assets/icons/svg/baseline-expand_more-24px.svg'
       )
     );
+  }
+
+  ngOnInit(): void {
+    this.permissionService
+      .FetchUserPermissions('hardik')
+      .subscribe((resp: IUserPermission[]) => {
+        this.permittedRoutes = resp;
+      });
   }
 
   ngOnDestroy(): void {
